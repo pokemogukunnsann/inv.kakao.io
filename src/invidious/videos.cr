@@ -5,7 +5,6 @@ enum VideoType
 end
 
 struct Video
-  include DB::Serializable
 
   # Version of the JSON structure
   # It prevents us from loading an incompatible version from cache
@@ -19,21 +18,15 @@ struct Video
 
   property id : String
 
-  @[DB::Field(converter: Video::JSONConverter)]
   property info : Hash(String, JSON::Any)
   property updated : Time
 
-  @[DB::Field(ignore: true)]
   @captions = [] of Invidious::Videos::Captions::Metadata
 
-  @[DB::Field(ignore: true)]
+
   property description : String?
 
-  module JSONConverter
-    def self.from_rs(rs)
-      JSON.parse(rs.read(String)).as_h
-    end
-  end
+
 
   # Methods for API v1 JSON
 
