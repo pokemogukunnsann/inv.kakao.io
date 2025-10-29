@@ -1,5 +1,4 @@
 struct PlaylistVideo
-  include DB::Serializable
 
   property title : String
   property id : String
@@ -83,7 +82,6 @@ struct PlaylistVideo
 end
 
 struct Playlist
-  include DB::Serializable
 
   property title : String
   property id : String
@@ -161,7 +159,6 @@ enum PlaylistPrivacy
 end
 
 struct InvidiousPlaylist
-  include DB::Serializable
 
   property title : String
   property id : String
