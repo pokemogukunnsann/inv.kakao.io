@@ -1,14 +1,14 @@
+require "../../http_pool" # 💡 DB::PoolからHttpPoolに変更
+
 # Mapping of subdomain => YoutubeConnectionPool
 # This is needed as we may need to access arbitrary subdomains of ytimg
-require "../../http_pool"
-
 private YTIMG_POOLS = {} of String => YoutubeConnectionPool
 
 struct YoutubeConnectionPool
   property! url : URI
   property! capacity : Int32
   property! timeout : Float64
-  property pool : HTTP::Pool(HTTP::Client)
+  property pool : HttpPool(HTTP::Client) # 💡 DB::PoolからHttpPoolに変更
 
   def initialize(url : URI, @capacity = 5, @timeout = 5.0)
     @url = url
@@ -35,32 +35,31 @@ struct YoutubeConnectionPool
   end
 
   private def build_pool
-    options = HTTP::Pool::Options.new(
+    options = HttpPool::Options.new( # 💡 DB::Pool::OptionsからHttpPool::Optionsに変更
       initial_pool_size: 0,
       max_pool_size: capacity,
       max_idle_pool_size: capacity,
       checkout_timeout: timeout
     )
 
-    options = HttpPool::Options.new(options) do
+    HttpPool(HTTP::Client).new(options) do # 💡 DB::PoolからHttpPoolに変更
       next make_client(url, force_resolve: true)
-    
     end
   end
 end
 
 struct CompanionConnectionPool
-  property pool : HttpPool(HTTP::Client)
+  property pool : HttpPool(HTTP::Client) # 💡 DB::PoolからHttpPoolに変更
 
   def initialize(capacity = 5, timeout = 5.0)
-    options = HTTP::Pool::Options.new(
+    options = HttpPool::Options.new( # 💡 DB::Pool::OptionsからHttpPool::Optionsに変更
       initial_pool_size: 0,
       max_pool_size: capacity,
       max_idle_pool_size: capacity,
       checkout_timeout: timeout
     )
 
-    @pool = HttpPool(HTTP::Client).new(options) do
+    @pool = HttpPool(HTTP::Client).new(options) do # 💡 DB::PoolからHttpPoolに変更
       companion = CONFIG.invidious_companion.sample
       next make_client(companion.private_url, use_http_proxy: false)
     end
