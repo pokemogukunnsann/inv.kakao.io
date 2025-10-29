@@ -30,16 +30,6 @@ module Invidious::Routing
 
       self.register_search_routes
 
-      self.register_user_routes
-      self.register_feed_routes
-
-      # Support push notifications via PubSubHubbub
-      get "/feed/webhook/:token", Routes::Feeds, :push_notifications_get
-      post "/feed/webhook/:token", Routes::Feeds, :push_notifications_post
-
-      if CONFIG.enable_user_notifications
-        get "/modify_notifications", Routes::Notifications, :modify
-      end
     {% end %}
 
     self.register_image_routes
@@ -52,33 +42,7 @@ module Invidious::Routing
   #  Invidious routes
   # -------------------
 
-  def register_user_routes
-    # User login/out
-    get "/login", Routes::Login, :login_page
-    post "/login", Routes::Login, :login
-    post "/signout", Routes::Login, :signout
-
-    # User preferences
-    get "/preferences", Routes::PreferencesRoute, :show
-    post "/preferences", Routes::PreferencesRoute, :update
-    get "/toggle_theme", Routes::PreferencesRoute, :toggle_theme
-    get "/data_control", Routes::PreferencesRoute, :data_control
-    post "/data_control", Routes::PreferencesRoute, :update_data_control
-
-    # User account management
-    get "/change_password", Routes::Account, :get_change_password
-    post "/change_password", Routes::Account, :post_change_password
-    get "/delete_account", Routes::Account, :get_delete
-    post "/delete_account", Routes::Account, :post_delete
-    get "/clear_watch_history", Routes::Account, :get_clear_history
-    post "/clear_watch_history", Routes::Account, :post_clear_history
-    get "/authorize_token", Routes::Account, :get_authorize_token
-    post "/authorize_token", Routes::Account, :post_authorize_token
-    get "/token_manager", Routes::Account, :token_manager
-    post "/token_ajax", Routes::Account, :token_ajax
-    post "/subscription_ajax", Routes::Subscriptions, :toggle_subscription
-    get "/subscription_manager", Routes::Subscriptions, :subscription_manager
-  end
+  
 
   def register_iv_playlist_routes
     get "/create_playlist", Routes::Playlists, :new
@@ -226,7 +190,7 @@ module Invidious::Routing
   # -------------------
   #  API routes
   # -------------------
-
+{% unless flag?(:api_only) %} #👈 ここから挿入
   def register_api_v1_routes
     {% begin %}
       {{namespace = Routes::API::V1}}
@@ -307,7 +271,7 @@ module Invidious::Routing
         get "/api/v1/auth/notifications", {{namespace}}::Authenticated, :notifications
         post "/api/v1/auth/notifications", {{namespace}}::Authenticated, :notifications
       end
-
+{% end %} #👈 ここまで
       # Misc
       get "/api/v1/stats", {{namespace}}::Misc, :stats
       get "/api/v1/playlists/:plid", {{namespace}}::Misc, :get_playlist
