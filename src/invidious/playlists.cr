@@ -168,11 +168,9 @@ struct InvidiousPlaylist
   property created : Time
   property updated : Time
 
-  @[DB::Field(converter: InvidiousPlaylist::PlaylistPrivacyConverter)]
   property privacy : PlaylistPrivacy = PlaylistPrivacy::Private
   property index : Array(Int64)
 
-  @[DB::Field(ignore: true)]
   property thumbnail_id : String?
 
   module PlaylistPrivacyConverter
