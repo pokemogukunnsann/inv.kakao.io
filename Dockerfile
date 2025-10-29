@@ -28,8 +28,8 @@ RUN apk add --no-cache openssl libyaml libstdc++
 WORKDIR /app
 
 # ビルドステージから実行ファイルと設定ファイルのみをコピー
-COPY --from=builder /app/invidious /app/
-COPY config.yml /app/config.yml
+COPY --from=builder /app/src/invidious /app/
+COPY config.yml /app/config/config.yml
 
 # Invidiousのデフォルトポート
 EXPOSE 3000
