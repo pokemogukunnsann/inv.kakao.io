@@ -25,13 +25,12 @@ require "http_proxy"
 require "athena-negotiation"
 require "openssl/hmac"
 require "option_parser"
-require "sqlite3"
 require "xml"
 require "yaml"
 require "compress/zip"
 require "protodec/utils"
 
-require "./invidious/database/*"
+
 require "./invidious/database/migrations/*"
 require "./invidious/http_server/*"
 require "./invidious/helpers/*"
@@ -60,7 +59,7 @@ alias IV = Invidious
 CONFIG   = Config.load
 HMAC_KEY = CONFIG.hmac_key
 
-PG_DB       = DB.open CONFIG.database_url
+
 ARCHIVE_URL = URI.parse("https://archive.org")
 PUBSUB_URL  = URI.parse("https://pubsubhubbub.appspot.com")
 REDDIT_URL  = URI.parse("https://www.reddit.com")
