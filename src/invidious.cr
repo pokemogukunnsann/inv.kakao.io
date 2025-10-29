@@ -32,6 +32,9 @@ require "protodec/utils"
 
 
 
+
+
+require "./invidious/github_storage"
 require "./invidious/http_server/*"
 require "./invidious/helpers/*"
 require "./invidious/yt_backend/*"
@@ -131,10 +134,6 @@ Kemal.config.extra_options do |parser|
     puts SOFTWARE.to_pretty_json
     exit
   end
-  parser.on("--migrate", "Run any migrations (beta, use at your own risk!!") do
-    Invidious::Database::Migrator.new(PG_DB).migrate
-    exit
-  end
 end
 
 Kemal::CLI.new ARGV
@@ -145,8 +144,7 @@ end
 OUTPUT = CONFIG.output.upcase == "STDOUT" ? STDOUT : File.open(CONFIG.output, mode: "a")
 LOGGER = Invidious::LogHandler.new(OUTPUT, CONFIG.log_level, CONFIG.colorize_logs)
 
-# Check table integrity
-Invidious::Database.check_integrity(CONFIG)
+
 
 {% if !flag?(:skip_videojs_download) %}
   # Resolve player dependencies. This is done at compile time.
@@ -175,30 +173,29 @@ DECRYPT_FUNCTION =
 # Start jobs
 
 if CONFIG.channel_threads > 0
-  Invidious::Jobs.register Invidious::Jobs::RefreshChannelsJob.new(PG_DB)
+  Invidious::Jobs.register Invidious::Jobs::RefreshChannelsJob.new(Invidious::STORAGE)
 end
 
 if CONFIG.feed_threads > 0
-  Invidious::Jobs.register Invidious::Jobs::RefreshFeedsJob.new(PG_DB)
+  Invidious::Jobs.register Invidious::Jobs::RefreshFeedsJob.new(Invidious::STORAGE)
 end
 
 if CONFIG.statistics_enabled
-  Invidious::Jobs.register Invidious::Jobs::StatisticsRefreshJob.new(PG_DB, SOFTWARE)
+  Invidious::Jobs.register Invidious::Jobs::StatisticsRefreshJob.new(Invidious::STORAGE, SOFTWARE)
 end
 
 if (CONFIG.use_pubsub_feeds.is_a?(Bool) && CONFIG.use_pubsub_feeds.as(Bool)) || (CONFIG.use_pubsub_feeds.is_a?(Int32) && CONFIG.use_pubsub_feeds.as(Int32) > 0)
-  Invidious::Jobs.register Invidious::Jobs::SubscribeToFeedsJob.new(PG_DB, HMAC_KEY)
+  Invidious::Jobs.register Invidious::Jobs::SubscribeToFeedsJob.new(Invidious::STORAGE, HMAC_KEY)
 end
 
 if CONFIG.popular_enabled
-  Invidious::Jobs.register Invidious::Jobs::PullPopularVideosJob.new(PG_DB)
+  Invidious::Jobs.register Invidious::Jobs::PullPopularVideosJob.new(Invidious::STORAGE)
 end
 
 NOTIFICATION_CHANNEL = ::Channel(VideoNotification).new(32)
 CONNECTION_CHANNEL   = ::Channel({Bool, ::Channel(PQ::Notification)}).new(32)
-Invidious::Jobs.register Invidious::Jobs::NotificationJob.new(NOTIFICATION_CHANNEL, CONNECTION_CHANNEL, CONFIG.database_url)
 
-Invidious::Jobs.register Invidious::Jobs::ClearExpiredItemsJob.new
+
 
 Invidious::Jobs.register Invidious::Jobs::InstanceListRefreshJob.new
 
