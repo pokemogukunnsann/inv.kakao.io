@@ -1,12 +1,12 @@
 #########################################
 #
-#  Database and other external servers
+#  データベースおよびその他の外部サーバー
 #
 #########################################
 
 ##
-## Database configuration with separate parameters.
-## This setting is MANDATORY, unless 'database_url' is used.
+## 個別のパラメータを使用したデータベース構成。
+## 'database_url' が使用されない限り、この設定は必須です。
 ##
 db:
   user: kemal
@@ -16,16 +16,10 @@ db:
   dbname: invidious
 
 ##
-## Database configuration using a single URI. This is an
-## alternative to the 'db' parameter above. If both forms
-## are used, then only database_url is used.
-## This setting is MANDATORY, unless 'db' is used.
+## 単一のURIを使用したデータベース設定。これは上記の「db」パラメータの代替です。両方の形式を使用する場合は、database_urlのみが使用されます。
+## 「db」が使用されない限り、この設定は必須です。
 ##
-## Note: The 'database_url' setting allows the use of UNIX
-## sockets. To do so, remove the IP address (or FQDN) and port
-## and append the 'host' parameter. E.g:
-##   postgres://kemal:kemal@/invidious?host=/var/run/postgresql
-##
+## 注: 「database_url」設定により、UNIX ソケットの使用が可能になります。これを行うには、IP アドレス (または FQDN) とポートを削除し、「host」パラメータを追加します。例: postgres//kemal:kemal@/invidious?host=/var/run/postgresql##
 ## Accepted values: a postgres:// URI
 ## Default: postgres://kemal:kemal@localhost:5432/invidious
 ##
