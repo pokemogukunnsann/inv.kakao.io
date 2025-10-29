@@ -14,7 +14,7 @@ RUN shards install --skip-setup
 
 # Invidious 本体をビルド
 # 💡 API_ONLY=1を明示的に指定することで、確実にAPI専用ビルドを行います
-RUN make invidious API_ONLY=1
+RUN CRYSTAL_NO_GIT=1 make invidious API_ONLY=1
 
 # ----------------------------------------------------
 
