@@ -1,0 +1,77 @@
+#########################################
+#
+#  データベースおよびその他の外部サーバー
+#
+#########################################
+
+# 💡 DB関連のセクションはすべて削除します
+
+## Invidious companion (動画ストリーム処理サーバー) の設定
+# invidious-companionを別サービスとしてデプロイするため、設定は必須です。
+invidious_companion:
+  - private_url: "http://localhost:8282" # Renderの内部通信用URLに後で置き換える
+    public_url: "http://localhost:8282" # Renderの外部公開URLに後で置き換える
+
+## Invidious companion API key (16文字)
+invidious_companion_key: "CHANGE_ME!!" # ⚠️ 実際は `pwgen 16 1`などで生成したランダムな文字列を設定してください！
+
+#########################################
+#
+#  Server config
+#
+#########################################
+
+# -----------------------------
+#  Network (inbound)
+# -----------------------------
+
+## Renderで動かすため、0.0.0.0とデフォルトポートを指定します
+port: 3000
+host_binding: 0.0.0.0
+
+## インスタンスのドメイン (Renderの公開URLを設定)
+domain: # ⚠️ Renderデプロイ後に設定
+https_only: true # Renderは通常HTTPSなのでtrueを推奨
+
+# -----------------------------
+#  Features
+# -----------------------------
+
+## API専用なので統計情報と人気動画は無効化 (メモリ節約)
+popular_enabled: false
+statistics_enabled: false
+
+# -----------------------------
+#  Users and accounts
+# -----------------------------
+
+## API専用のため、アカウント機能は全て無効化 (DBおよびメモリ節約)
+registration_enabled: false
+login_enabled: false
+# captcha_enabled: false (login_enabledがfalseなら不要)
+# enable_user_notifications: false (ユーザー機能なしなので不要)
+
+# -----------------------------
+#  Background jobs
+# -----------------------------
+
+## ジョブのスレッド数 (invidious.crでジョブ登録を削除済みですが、設定は残します)
+channel_threads: 0 # ユーザー機能なし、DBなしなので0
+full_refresh: false
+feed_threads: 0 # ユーザー機能なし、DBなしなので0
+
+jobs:
+  ## オプションは全て無効化 (DB依存、かつAPIに必須ではないため)
+  clear_expired_items:
+    enable: false
+  refresh_channels:
+    enable: false
+  refresh_feeds:
+    enable: false
+
+# -----------------------------
+#  Miscellaneous
+# -----------------------------
+
+## HMAC signing key (20文字)
+hmac_key: "CHANGE_ME_20_CHARS!!" # ⚠️ 実際は `pwgen 20 1`などで生成したランダムな文字列を設定してください！
