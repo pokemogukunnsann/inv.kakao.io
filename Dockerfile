@@ -2,7 +2,7 @@
 FROM crystallang/crystal:1.11.2-alpine as builder
 
 # ビルドに必要な依存パッケージをインストール
-RUN apk add --no-cache build-base git make openssl-dev libyaml-dev
+RUN apk add --no-cache build-base git make openssl-dev yaml-dev
 
 WORKDIR /app
 
