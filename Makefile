@@ -12,6 +12,7 @@ NO_DBG_SYMBOLS := 0
 # invidious is not stable when MT is enabled.
 MT := 0
 
+API_ONLY := 1
 
 FLAGS ?=
 
