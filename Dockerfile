@@ -23,7 +23,7 @@ FROM alpine:latest
 
 # 実行時に必要なライブラリをインストール
 # Crystal実行に必要な共有ライブラリ (libstdc++, openssl, libyaml)
-RUN apk add --no-cache openssl libyaml libstdc++
+RUN apk add --no-cache openssl libyaml-libs libstdc++ zlib
 
 WORKDIR /app
 
