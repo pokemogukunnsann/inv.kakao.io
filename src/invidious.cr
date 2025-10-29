@@ -20,7 +20,7 @@ require "file_utils"
 # Require kemal, then our own overrides
 require "kemal"
 require "./invidious/kemal_patch" # 👈 これを早い段階で追加！
-require "./invidious/*"
+
 require "./ext/kemal_static_file_handler.cr"
 
 require "http_proxy"
@@ -42,7 +42,7 @@ require "./invidious/helpers/*"
 require "./invidious/yt_backend/*"
 require "./invidious/frontend/*"
 require "./invidious/videos/*"
-
+require "./invidious/*"
 require "./invidious/jsonify/**"
 
 
