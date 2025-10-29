@@ -575,11 +575,7 @@ hmac_key: "CHANGE_ME!!"
 #########################################
 
 ##
-## NOTE: All the settings below define the default user
-## preferences. They will apply to ALL users connecting
-## without a preferences cookie (so either on the first
-## connection to the instance or after clearing the
-## browser's cookies).
+## NOTE: All the settings below define the default user preferences. They will apply to ALL users connecting without a preferences cookie (so either on the first connection to the instance or after clearing the browser's cookies).
 ##
 
 default_user_preferences:
@@ -591,9 +587,7 @@ default_user_preferences:
   ##
   ## Default user interface language (locale).
   ##
-  ## Note: When hosting a public instance, overriding the
-  ## default (english) is not recommended, as it may
-  ## people using other languages.
+  ## 注: パブリックインスタンスをホストする場合、他の言語を使用するユーザーがアクセスする可能性があるため、デフォルト (英語) を上書きすることはお勧めしません。
   ##
   ## Accepted values:
   ##   ar      (Arabic)
