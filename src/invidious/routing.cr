@@ -190,7 +190,7 @@ module Invidious::Routing
   # -------------------
   #  API routes
   # -------------------
-{% unless flag?(:api_only) %} #👈 ここから挿入
+
   def register_api_v1_routes
     {% begin %}
       {{namespace = Routes::API::V1}}
@@ -238,6 +238,7 @@ module Invidious::Routing
 
 
       # Authenticated
+{% unless flag?(:api_only) %} #👈 ここから挿入
 
       get "/api/v1/auth/preferences", {{namespace}}::Authenticated, :get_preferences
       post "/api/v1/auth/preferences", {{namespace}}::Authenticated, :set_preferences
