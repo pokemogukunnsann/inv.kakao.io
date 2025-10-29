@@ -170,25 +170,7 @@ DECRYPT_FUNCTION =
 
 # Start jobs
 
-if CONFIG.channel_threads > 0
-  Invidious::Jobs.register Invidious::Jobs::RefreshChannelsJob.new(Invidious::STORAGE)
-end
 
-if CONFIG.feed_threads > 0
-  Invidious::Jobs.register Invidious::Jobs::RefreshFeedsJob.new(Invidious::STORAGE)
-end
-
-if CONFIG.statistics_enabled
-  Invidious::Jobs.register Invidious::Jobs::StatisticsRefreshJob.new(Invidious::STORAGE, SOFTWARE)
-end
-
-if (CONFIG.use_pubsub_feeds.is_a?(Bool) && CONFIG.use_pubsub_feeds.as(Bool)) || (CONFIG.use_pubsub_feeds.is_a?(Int32) && CONFIG.use_pubsub_feeds.as(Int32) > 0)
-  Invidious::Jobs.register Invidious::Jobs::SubscribeToFeedsJob.new(Invidious::STORAGE, HMAC_KEY)
-end
-
-if CONFIG.popular_enabled
-  Invidious::Jobs.register Invidious::Jobs::PullPopularVideosJob.new(Invidious::STORAGE)
-end
 
 NOTIFICATION_CHANNEL = ::Channel(VideoNotification).new(32)
 CONNECTION_CHANNEL   = ::Channel({Bool, ::Channel(PQ::Notification)}).new(32)
