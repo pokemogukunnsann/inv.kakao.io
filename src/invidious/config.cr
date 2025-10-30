@@ -69,7 +69,7 @@ struct ConfigPreferences
       }
     {% end %}
   end
-end
+
 
 struct HTTPProxyConfig
   include YAML::Serializable
