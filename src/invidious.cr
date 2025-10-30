@@ -64,7 +64,7 @@ require "./invidious/github_storage"
 require "./invidious/hashtag"
 require "./invidious/jobs"
 require "./invidious/mixes"
-require "./invidious/treding"
+require "./invidious/trending"
 require "./invidious/videos"
 require "./invidious/playlist"
 
