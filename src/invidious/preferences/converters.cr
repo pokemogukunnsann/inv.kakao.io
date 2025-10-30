@@ -54,14 +54,12 @@ class Preferences
   # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
   # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
   class StringToCookies
-    def self.from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
-      case node
-      when YAML::Nodes::Scalar
-        # HTTP::Cookies.new(string) が解析機能を持つように拡張します
-        HTTP::Cookies.new(node.value) # <-- 修正: parse ではなく new を呼び出す
-      else
-        raise YAML::ParseException.new("Expected a scalar value for cookies", node.start_line, node.start_column)
-      end
+    include YAML::Serializable::TypeConverter
+
+    def self.from_yaml(context, node : YAML::Nodes::Node)
+      # 修正前: return HTTP::Cookies.new(node.value)
+      # 修正後: 新しく定義したクラスメソッドを呼び出す
+      return HTTP::Cookies.from_string(node.value)
     end
   end
 end
