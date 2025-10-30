@@ -66,7 +66,7 @@ require "./invidious/jobs"
 require "./invidious/mixes"
 require "./invidious/trending"
 require "./invidious/videos"
-require "./invidious/playlist"
+require "./invidious/playlists"
 
 require "./invidious/jsonify/**"
 
