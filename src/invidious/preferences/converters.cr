@@ -57,18 +57,26 @@ class Preferences
   end
   #require "yaml"
   # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
-  # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
   class StringToCookies
-　　#require "yaml"
-    include YAML::Serializable::TypeConverter
-
-    def self.from_yaml(context, node : YAML::Nodes::Node)
-      # 修正前: return HTTP::Cookies.new(node.value)
-      # 修正後: 新しく定義したクラスメソッドを呼び出す
-      return HTTP::Cookies.from_string(node.value)
+  # include YAML::Serializable::TypeConverter # 👈 これを削除！
+  
+  # from_yamlメソッドを他のコンバータと同じように定義します
+  def self.from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+    case node
+    when YAML::Nodes::Scalar
+      # HTTP::Cookies.from_string(node.value) はあなたのヘルパーが追加しているものかもしれません
+      # 標準的な実装では、HTTP::Cookie.parse の方が一般的です
+      begin
+        # 既存のコードを尊重:
+        return HTTP::Cookies.from_string(node.value)
+      rescue NoMethodError # from_stringがない場合（ヘルパーが未ロードなど）
+        # 標準的なHTTP/Cookieの解析を使用する場合：
+        # return HTTP::Cookie.parse(node.value)
+        raise YAML::ParseException.new("Cookie parsing failed (check if http_ext is loaded): #{node.value}", node.start_line, node.start_column)
+      end
+    else
+      raise YAML::ParseException.new("Expected a scalar value for Cookies", node.start_line, node.start_column)
     end
   end
 end
-
-puts "Converters: URIConverter, FamilyConverter, StringToCookies を作成しました。"
-# Converters: URIConverter, FamilyConverter, StringToCookies を作成しました。
+  
