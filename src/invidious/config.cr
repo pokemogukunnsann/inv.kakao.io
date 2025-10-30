@@ -1,7 +1,8 @@
 require "yaml"
 require "http/cookie"
 #require "yaml/serializable" # 👈 YAMLの機能を確保
-require "./preferences/*"
+require "./preferences/time_span_converter"
+require "./preferences/converters"
 
 
 struct DBConfig
