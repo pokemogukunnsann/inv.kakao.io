@@ -1,6 +1,6 @@
 require "yaml"
 require "http/cookie"
-require "yaml/serializable" # 👈 YAMLの機能を確保
+#require "yaml/serializable" # 👈 YAMLの機能を確保
 require "./preferences/*"
 
 
