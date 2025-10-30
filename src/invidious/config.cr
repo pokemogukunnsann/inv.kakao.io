@@ -61,13 +61,13 @@ struct ConfigPreferences
   property vr_mode : Bool = true
   property show_nick : Bool = true
   property save_player_pos : Bool = false
-  def to_tuple
-    {% begin %}
-      {
-        {{(@type.instance_vars.map { |var| "#{var.name}: #{var.name}".id }).splat}}
-      }
-    {% end %}
-  end
+  #def to_tuple
+  #  {% begin %}
+  #    {
+  #      {{(@type.instance_vars.map { |var| "#{var.name}: #{var.name}".id }).splat}}
+  #    }
+  #  {% end %}
+  #end
 end
 
 struct HTTPProxyConfig
