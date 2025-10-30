@@ -53,6 +53,9 @@ require "./invidious/helpers/*"
 require "./invidious/yt_backend/*"
 require "./invidious/frontend/*"
 require "./invidious/videos/*"
+require "./invidious/models/*"   # 👈 モデル群の抽象構造を先に！
+#require "./invidious/user"
+
 #require "./invidious/*"
 puts "  👉 [API_ONLY PATCH] ./invidious/*の読み込み。"
 require "./invidious/routing"
