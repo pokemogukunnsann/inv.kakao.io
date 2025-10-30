@@ -3,6 +3,7 @@ require "http/cookie"
 #require "yaml/serializable" # 👈 YAMLの機能を確保
 require "./preferences/time_span_converter"
 require "./preferences/converters"
+module Invidious
 struct DBConfig
   include YAML::Serializable
   property user : String
@@ -316,4 +317,5 @@ class Config
 
     return config
   end
+end
 end
