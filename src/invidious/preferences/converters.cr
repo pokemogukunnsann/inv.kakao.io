@@ -9,7 +9,7 @@ require "../helpers/http_ext" # または他の必要なファイル
 
 # Preferenceはclassであるため、classで拡張します。
 class Preferences
-  require "yaml"
+#  require "yaml"
   # 1. YAMLで "30.minutes" のような文字列を Time::Span に変換するコンバータ (前回作成済み)
   class TimeSpanConverter
     def self.from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
@@ -55,11 +55,11 @@ class Preferences
       end
     end
   end
-  require "yaml"
+  #require "yaml"
   # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
   # 4. クッキー文字列を HTTP::Cookies オブジェクトに変換するコンバータ
   class StringToCookies
-　　require "yaml"
+　　#require "yaml"
     include YAML::Serializable::TypeConverter
 
     def self.from_yaml(context, node : YAML::Nodes::Node)
