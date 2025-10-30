@@ -1,11 +1,10 @@
-# src/invidious/kemal_patch.cr
+# src/kemal/ext/context.cr
 
-# API_ONLY=1 の場合は、Preferences と Invidious::User を除外してマクロを再定義する
-require "kemal"
+require "../context" # Kemal::Contextが定義されているファイルを require
 
 module Kemal
   class Context
-    # 元々 lib/kemal/src/kemal/ext/context.cr で定義されているマクロを上書き
+    # オリジナルと同名同場所でマクロを再定義し、強制的に上書きする
     macro finished
       # API_ONLY ビルドの場合は Preferences と Invidious::User を除外
       alias StoreTypes = Union(Nil, String, Int32, Int64, Float64, Bool, Array(String)
