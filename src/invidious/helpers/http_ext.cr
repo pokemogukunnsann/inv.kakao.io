@@ -4,7 +4,7 @@ require "http/cookie" # HTTP::Cookie::parse を使うために必要
 class HTTP::Cookies
   # 文字列を受け取ってクッキーコレクションを生成する new メソッドを定義
   # YAMLコンバータはこれを利用し、クッキー文字列を解析します。
-  def initialize(@cookies = [] of HTTP::Cookie, str : String)
+  def initialize(@cookies = [] of HTTP::Cookie, str : String = "")
     # 文字列が空でなければ解析する
     unless str.empty?
       str.split(';').each do |cookie_string|
