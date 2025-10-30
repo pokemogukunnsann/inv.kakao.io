@@ -61,7 +61,7 @@ struct ConfigPreferences
   property vr_mode : Bool = true
   property show_nick : Bool = true
   property save_player_pos : Bool = false
-
+end
   def to_tuple
     {% begin %}
       {
