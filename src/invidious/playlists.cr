@@ -83,16 +83,16 @@ end
 
 struct Playlist
 
-  property title : String
-  property id : String
-  property author : String
-  property author_thumbnail : String
-  property ucid : String
-  property description : String
-  property description_html : String
-  property video_count : Int32
-  property views : Int64
-  property updated : Time
+  property title : String?
+  property id : String?
+  property author : String?
+  property author_thumbnail : String?
+  property ucid : String?
+  property description : String?
+  property description_html : String?
+  property video_count : Int32?
+  property views : Int64?
+  property updated : Time?
   property thumbnail : String?
   property subtitle : String?
 
