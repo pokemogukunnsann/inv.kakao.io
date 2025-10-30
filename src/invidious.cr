@@ -53,7 +53,12 @@ require "./invidious/helpers/*"
 require "./invidious/yt_backend/*"
 require "./invidious/frontend/*"
 require "./invidious/videos/*"
-require "./invidious/models/**"   # 👈 モデル群の抽象構造を先に！
+require "./invidious/channels/*"
+require "./invidious/comments/*"
+require "./invidious/jobs/*"
+require "./invidious/comments/jsonify/api_v1/*"
+require "./invidious/views/*"
+require "./invidious/yt_backend/*"
 #require "./invidious/user"
 
 #require "./invidious/*"
