@@ -317,5 +317,3 @@ class Config
     return config
   end
 end
-
-end
