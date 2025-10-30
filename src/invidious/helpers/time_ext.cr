@@ -1,7 +1,7 @@
 require "time"
 
 # Time::Span クラスを拡張します
-class Time::Span
+struct Time::Span
   # 独自に .parse クラスメソッドを定義します。
   # YAMLファイルからの "30.minutes" のような文字列を Time::Span に変換するのが目的です。
   # NOTE: これはシンプルな実装例であり、オリジナルの Invidious のロジックとは異なる可能性があります。
