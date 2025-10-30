@@ -1,6 +1,8 @@
 require "yaml"
 require "http/cookie"
+require "yaml/serializable" # 👈 YAMLの機能を確保
 require "./preferences/*"
+
 
 struct DBConfig
   include YAML::Serializable
