@@ -1,3 +1,5 @@
+require "./preferences/*"
+
 struct DBConfig
   include YAML::Serializable
 
