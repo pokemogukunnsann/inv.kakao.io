@@ -44,7 +44,9 @@ require "compress/zip"
 require "protodec/utils"
 
 
-
+# Declare the base namespace for invidious
+module Invidious
+end
 
 
 require "./invidious/github_storage"
@@ -88,9 +90,7 @@ require "./invidious/jobs/base_job"
 require "./invidious/jobs/*"
 require "./invidious/kemal_final_patch" # 👈 最後の最後でマクロを上書き！
 
-# Declare the base namespace for invidious
-module Invidious
-end
+
 
 # Simple alias to make code easier to read
 alias IV = Invidious
