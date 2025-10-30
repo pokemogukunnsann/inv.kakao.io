@@ -44,8 +44,9 @@ require "./invidious/helpers/*"
 require "./invidious/yt_backend/*"
 require "./invidious/frontend/*"
 require "./invidious/videos/*"
-require "./invidious/*"
+#require "./invidious/*"
 puts "  👉 [API_ONLY PATCH] ./invidious/*の読み込み。"
+require "./invidious/routing"
 
 require "./invidious/jsonify/**"
 
