@@ -24,8 +24,8 @@ end
 
 struct ConfigPreferences
   include YAML::Serializable
-  def initialize
-  end
+  #def initialize
+  #end
 
   property annotations : Bool = false
   property annotations_subscribed : Bool = false
@@ -63,12 +63,12 @@ struct ConfigPreferences
   property save_player_pos : Bool = false
 
   def to_tuple
-    {% begin %}
-      {
-        {{(@type.instance_vars.map { |var| "#{var.name}: #{var.name}".id }).splat}}
-      }
-    {% end %}
-  end
+    {% begin %}
+      {
+        {{(@type.instance_vars.map { |var| "#{var.name}: #{var.name}".id }).splat}}
+      }
+    {% end %}
+  end
 end
 
 struct HTTPProxyConfig
