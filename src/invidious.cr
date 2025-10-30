@@ -21,8 +21,7 @@ require "file_utils"
 require "kemal"
 puts "  👉 [API_ONLY PATCH] Kemalの読み込み。"
 # 削除…🗑️require "./invidious/kemal_patch" # 👈 これを早い段階で追加！
-require "./invidious/kemal_noop_patch" # 👈 これを復活‼️
-puts "  👉 [API_ONLY PATCH] ./invidious/kemal_noop_patchの読み込み。"
+
 require "./ext/kemal_static_file_handler.cr"
 
 require "http_proxy"
@@ -47,6 +46,7 @@ require "./invidious/frontend/*"
 require "./invidious/videos/*"
 require "./invidious/*"
 puts "  👉 [API_ONLY PATCH] ./invidious/*の読み込み。"
+
 require "./invidious/jsonify/**"
 
 
@@ -56,6 +56,7 @@ require "./invidious/search/*"
 require "./invidious/routes/**"
 require "./invidious/jobs/base_job"
 require "./invidious/jobs/*"
+require "./invidious/kemal_final_patch" # 👈 最後の最後でマクロを上書き！
 
 # Declare the base namespace for invidious
 module Invidious
