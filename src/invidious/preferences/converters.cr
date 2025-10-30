@@ -4,7 +4,7 @@ require "socket" # FamilyConverterで必要
 require "http/cookie" # StringToCookiesで必要
 require "yaml"
 require "./*"
-require "../../helpers/http_ext" # または他の必要なファイル
+require "../helpers/http_ext" # または他の必要なファイル
 
 # Preferenceはclassであるため、classで拡張します。
 class Preferences
