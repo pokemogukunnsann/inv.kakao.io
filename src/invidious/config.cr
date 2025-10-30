@@ -3,28 +3,21 @@ require "http/cookie"
 #require "yaml/serializable" # 👈 YAMLの機能を確保
 require "./preferences/time_span_converter"
 require "./preferences/converters"
-
-
 struct DBConfig
   include YAML::Serializable
-
   property user : String
   property password : String
   property host : String
   property port : Int32
   property dbname : String
 end
-
 struct SocketBindingConfig
   include YAML::Serializable
-
   property path : String
   property permissions : String
 end
-
 struct ConfigPreferences
   include YAML::Serializable
-
   property annotations : Bool = false
   property annotations_subscribed : Bool = false
   property preload : Bool = true
@@ -324,27 +317,5 @@ class Config
     return config
   end
 end
-# src/invidious/config.cr の一番最後に追加します！
 
-# API_ONLY ビルドにおける Kemal::Context::StoreTypes のマクロ上書き
-# Preferences と Invidious::User への参照を API_ONLY=1 で排除するパッチ
-
-# require "kemal" がすでに他の場所で実行されている前提です。
-# ここで敢えて require "kemal" を再実行することで、このファイルがロードされた直後に
-# マクロが上書きされることを期待します。
-require "kemal" 
-
-module Kemal
-  class Context
-    # Kemal::Context#finished のマクロを強制的に上書き
-    macro finished
-      {% if flag?(:api_only) %}
-        # API_ONLY の場合は、マクロを空にして展開を抑制し、Preferences, Invidious::Userへの参照を削除する
-      {% else %}
-        # API_ONLY ではない場合、オリジナルのマクロをそのまま展開（デバッグ用）
-        puts "  👉 [CONFIG PATCH] Kemal::Context#finished マクロを API_ONLY でないため、オリジナルで展開します。"
-        {{ super }}
-      {% end %}
-    end
-  end
 end
