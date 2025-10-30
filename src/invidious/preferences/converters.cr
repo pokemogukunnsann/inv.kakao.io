@@ -9,6 +9,9 @@ require "../helpers/http_ext" # または他の必要なファイル
 
 # Preferenceはclassであるため、classで拡張します。
 class Preferences
+  def initialize
+    # 必要であれば、ここでデフォルト値を設定する
+  end
 #  require "yaml"
   # 1. YAMLで "30.minutes" のような文字列を Time::Span に変換するコンバータ (前回作成済み)
   class TimeSpanConverter
