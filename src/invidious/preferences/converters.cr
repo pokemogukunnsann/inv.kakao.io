@@ -1,7 +1,7 @@
 require "time"
 require "uri" # URIConverterで必要
 require "socket" # FamilyConverterで必要
-require "http/cookies" # StringToCookiesで必要
+require "http/cookie" # StringToCookiesで必要
 
 # Preferenceはclassであるため、classで拡張します。
 class Preferences
