@@ -56,7 +56,7 @@ class Preferences
     def self.from_yaml(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
       case node
       when YAML::Nodes::Scalar
-        HTTP::Cookies.from_set_cookie(node.value) # クッキー文字列を解析してHTTP::Cookiesを生成
+        HTTP::Cookies.parse(node.value) # クッキー文字列を解析してHTTP::Cookiesを生成
       else
         raise YAML::ParseException.new("Expected a scalar value for cookies", node.start_line, node.start_column)
       end
