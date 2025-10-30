@@ -57,6 +57,7 @@ require "./invidious/videos/*"
 puts "  👉 [API_ONLY PATCH] ./invidious/*の読み込み。"
 require "./invidious/routing"
 require "./invidious/videos"
+require "./invidious/*"
 
 require "./invidious/jsonify/**"
 
