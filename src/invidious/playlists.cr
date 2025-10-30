@@ -168,8 +168,8 @@ struct InvidiousPlaylist
   property created : Time?
   property updated : Time?
 
-  property privacy : PlaylistPrivacy = PlaylistPrivacy::Private
-  property index : Array(Int64)
+  property privacy : PlaylistPrivacy = PlaylistPrivacy::Private?
+  property index : Array(Int64)?
 
   property thumbnail_id : String?
 
