@@ -13,7 +13,7 @@ invidious_companion:
     public_url: "http://localhost:8282" # Renderの外部公開URLに後で置き換える
 
 ## Invidious companion API key (16文字)
-invidious_companion_key: "CHANGE_ME!!" # ⚠️ 実際は `pwgen 16 1`などで生成したランダムな文字列を設定してください！
+invidious_companion_key: "hageiwashibakaga" # ⚠️ 実際は `pwgen 16 1`などで生成したランダムな文字列を設定してください！
 
 #########################################
 #
@@ -74,4 +74,4 @@ jobs:
 # -----------------------------
 
 ## HMAC signing key (20文字)
-hmac_key: "CHANGE_ME_20_CHARS!!" # ⚠️ 実際は `pwgen 20 1`などで生成したランダムな文字列を設定してください！
+hmac_key: "hageiwashibakagayo11" # ⚠️ 実際は `pwgen 20 1`などで生成したランダムな文字列を設定してください！
