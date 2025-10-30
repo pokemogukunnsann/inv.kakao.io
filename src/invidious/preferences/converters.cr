@@ -79,4 +79,4 @@ class Preferences
     end
   end
 end
-  
+end
