@@ -1,3 +1,5 @@
+require "yaml"
+require "http/cookie"
 require "./preferences/*"
 
 struct DBConfig
