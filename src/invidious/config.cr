@@ -80,10 +80,11 @@ class Config
     include YAML::Serializable
 
     @[YAML::Field(converter: Preferences::URIConverter)]
-    property private_url : URI = URI.parse("")
+    property private_url : URI = URI.new
 
     @[YAML::Field(converter: Preferences::URIConverter)]
     property public_url : URI = URI.parse("")
+    #property public_url : URI = URI.new
   end
 
   # Number of threads to use for crawling videos from channels (for updating subscriptions)
