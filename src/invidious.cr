@@ -14,13 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 require "digest/md5"
 require "file_utils"
 
 # Require kemal, then our own overrides
 require "kemal"
 puts "  👉 [API_ONLY PATCH] Kemalの読み込み。"
-# 削除…🗑️require "./invidious/kemal_patch" # 👈 これを早い段階で追加！
+# 削除…🗑️require "./invidious/kemal_patch" 
+class Preferences
+  # ダミーのクラス
+end
 
 require "./ext/kemal_static_file_handler.cr"
 
