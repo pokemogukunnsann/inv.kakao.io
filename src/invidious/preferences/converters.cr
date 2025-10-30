@@ -64,6 +64,7 @@ class Preferences
       end
     end
   end
+end
 
 puts "Converters: URIConverter, FamilyConverter, StringToCookies を作成しました。"
 # Converters: URIConverter, FamilyConverter, StringToCookies を作成しました。
