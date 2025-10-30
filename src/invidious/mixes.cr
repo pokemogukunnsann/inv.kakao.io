@@ -1,21 +1,21 @@
 struct MixVideo
   include DB::Serializable
 
-  property title : String
-  property id : String
-  property author : String
-  property ucid : String
-  property length_seconds : Int32
-  property index : Int32
-  property rdid : String
+  property title : String?
+  property id : String?
+  property author : String?
+  property ucid : String?
+  property length_seconds : Int32?
+  property index : Int32?
+  property rdid : String?
 end
 
 struct Mix
   include DB::Serializable
 
-  property title : String
-  property id : String
-  property videos : Array(MixVideo)
+  property title : String?
+  property id : String?
+  property videos : Array(MixVideo)?
 end
 
 def fetch_mix(rdid, video_id, cookies = nil, locale = nil)
