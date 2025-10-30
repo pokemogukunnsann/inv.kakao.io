@@ -20,6 +20,7 @@ require "file_utils"
 # Require kemal, then our own overrides
 require "kemal"
 # 削除…🗑️require "./invidious/kemal_patch" # 👈 これを早い段階で追加！
+require "./invidious/kemal_noop_patch" # 👈 これを復活‼️
 
 require "./ext/kemal_static_file_handler.cr"
 
