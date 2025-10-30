@@ -3,7 +3,7 @@ require "uri" # URIConverterで必要
 require "socket" # FamilyConverterで必要
 require "http/cookie" # StringToCookiesで必要
 require "yaml"
-require "./preferences/*"
+require "./*"
 require "../../helpers/http_ext" # または他の必要なファイル
 
 # Preferenceはclassであるため、classで拡張します。
