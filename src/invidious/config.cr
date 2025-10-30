@@ -132,7 +132,8 @@ class Config
   property statistics_enabled : Bool = false
   property admins : Array(String) = [] of String
   property external_port : Int32? = nil
-  property default_user_preferences : ConfigPreferences = ConfigPreferences.from_yaml("")
+  #property default_user_preferences : ConfigPreferences = ConfigPreferences.from_yaml("")
+  property default_user_preferences : ConfigPreferences = ConfigPreferences.new
   # For compliance with DMCA, disables download widget using list of video IDs
   property dmca_content : Array(String) = [] of String
   # Check table integrity, automatically try to add any missing columns, create tables, etc.
