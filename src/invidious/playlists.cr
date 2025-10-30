@@ -160,13 +160,13 @@ end
 
 struct InvidiousPlaylist
 
-  property title : String
-  property id : String
-  property author : String
+  property title : String?
+  property id : String?
+  property author : String?
   property description : String = ""
-  property video_count : Int32
-  property created : Time
-  property updated : Time
+  property video_count : Int32?
+  property created : Time?
+  property updated : Time?
 
   property privacy : PlaylistPrivacy = PlaylistPrivacy::Private
   property index : Array(Int64)
