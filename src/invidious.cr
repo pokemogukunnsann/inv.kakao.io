@@ -25,6 +25,11 @@ puts "  👉 [API_ONLY PATCH] Kemalの読み込み。"
 class Preferences
   # ダミーのクラス
 end
+module Invidious
+  class User
+    # ダミーのクラス
+  end
+end
 
 require "./ext/kemal_static_file_handler.cr"
 
