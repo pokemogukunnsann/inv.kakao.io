@@ -16,10 +16,10 @@ struct Video
   #
   SCHEMA_VERSION = 3
 
-  property id : String
+  property id : String?
 
-  property info : Hash(String, JSON::Any)
-  property updated : Time
+  property info : Hash(String, JSON::Any)?
+  property updated : Time?
 
   @captions = [] of Invidious::Videos::Captions::Metadata
 
@@ -47,16 +47,16 @@ struct Video
 
   # Misc methods
 
-  def video_type : VideoType
+  def video_type : VideoType?
     video_type = info["videoType"]?.try &.as_s || "video"
     return VideoType.parse?(video_type) || VideoType::Video
   end
 
-  def schema_version : Int
+  def schema_version : Int?
     return info["version"]?.try &.as_i || 1
   end
 
-  def published : Time
+  def published : Time?
     return info["published"]?
       .try { |t| Time.parse(t.as_s, "%Y-%m-%d", Time::Location::UTC) } || Time.utc
   end
@@ -85,7 +85,7 @@ struct Video
 
   # Methods for parsing streaming data
 
-  def fmt_stream : Array(Hash(String, JSON::Any))
+  def fmt_stream : Array(Hash(String, JSON::Any))?
     if formats = info.dig?("streamingData", "formats")
       return formats
         .as_a.map(&.as_h)
@@ -95,7 +95,7 @@ struct Video
     end
   end
 
-  def adaptive_fmts : Array(Hash(String, JSON::Any))
+  def adaptive_fmts : Array(Hash(String, JSON::Any))?
     if formats = info.dig?("streamingData", "adaptiveFormats")
       return formats
         .as_a.map(&.as_h)
