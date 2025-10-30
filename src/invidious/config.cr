@@ -24,8 +24,10 @@ end
 
 struct ConfigPreferences
   include YAML::Serializable
+  def initialize
+  end
 
-  property annotations : Bool = false
+  property annotations : Bool = false
   property annotations_subscribed : Bool = false
   property preload : Bool = true
   property autoplay : Bool = false
