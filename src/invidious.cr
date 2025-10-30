@@ -19,9 +19,10 @@ require "file_utils"
 
 # Require kemal, then our own overrides
 require "kemal"
+puts "  👉 [API_ONLY PATCH] Kemalの読み込み。"
 # 削除…🗑️require "./invidious/kemal_patch" # 👈 これを早い段階で追加！
 require "./invidious/kemal_noop_patch" # 👈 これを復活‼️
-
+puts "  👉 [API_ONLY PATCH] ./invidious/kemal_noop_patchの読み込み。"
 require "./ext/kemal_static_file_handler.cr"
 
 require "http_proxy"
@@ -30,6 +31,7 @@ require "openssl/hmac"
 require "option_parser"
 require "xml"
 require "yaml"
+puts "  👉 [API_ONLY PATCH] yamlの読み込み。"
 require "compress/zip"
 require "protodec/utils"
 
@@ -44,6 +46,7 @@ require "./invidious/yt_backend/*"
 require "./invidious/frontend/*"
 require "./invidious/videos/*"
 require "./invidious/*"
+puts "  👉 [API_ONLY PATCH] ./invidious/*の読み込み。"
 require "./invidious/jsonify/**"
 
 
