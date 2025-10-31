@@ -1,5 +1,5 @@
 # ステージ 1: ビルド環境 (crystal-alpineで軽量にビルド)
-FROM crystallang/crystal:1.0.0 -alpine as builder
+FROM crystallang/crystal:1.0.0-alpine as builder
 
 # ビルドに必要な依存パッケージをインストール
 RUN apk add --no-cache build-base git make openssl-dev yaml-dev
